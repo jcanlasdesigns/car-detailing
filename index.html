@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>JK MOBILE AUTO DETAILING SERVICE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-blue: #2563eb;
+            --primary-blue-light: #3b82f6;
+            --accent-teal: #0d9488;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-radius: 8px;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-spacing {
+            padding: 70px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 50px 0;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--primary-dark);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo-sub {
+            font-size: 11px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Desktop Navigation - Visible on desktop */
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+            padding: 6px 0;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link.active {
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-blue);
+            margin-top: 4px;
+        }
+
+        .cta-nav {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 8px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .cta-nav:hover {
+            background-color: var(--primary-blue-light);
+        }
+
+        /* Mobile Menu Button - Hidden on desktop, shown on mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Menu - Hidden on desktop */
+        .mobile-menu {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+      
+			background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.9)), url("images/hero.png"); 
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: white;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .hero-cta {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .hero-cta:hover {
+            background-color: var(--primary-blue-light);
+        }
+
+        .hero-cta-secondary {
+            background-color: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            font-size: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .hero-cta-secondary:hover {
+            border-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Section Styling */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-main-title {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-header img {
+            transform: scale(1.05);
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .card-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .card-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .card-price span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-left: 6px;
+        }
+
+        .card-button {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            display: block;
+        }
+
+        .card-button:hover {
+            background-color: var(--primary-blue-light);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            background-color: #f1f5f9;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 240px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.8) 0%, rgba(26, 26, 26, 0.2) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .portfolio-category {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image-container {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: 20px;
+            right: -15px;
+            background-color: var(--primary-blue);
+            color: white;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .experience-years {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .experience-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-blue);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            margin-bottom: 16px;
+        }
+
+        .contact-item:hover {
+            background-color: #f1f5f9;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-blue);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 50px 0 25px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-blue);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 38px;
+            height: 38px;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ===== MOBILE STYLES ===== */
+        @media (max-width: 768px) {
+            /* Hide desktop navigation on mobile */
+            .nav {
+                display: none;
+            }
+            
+            /* Show mobile menu button on mobile */
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            /* Mobile Menu Styles */
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--primary-dark);
+                z-index: 1002;
+                padding: 100px 30px 40px;
+                transition: var(--transition);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+                overflow-y: auto;
+                display: block;
+            }
+            
+            .mobile-menu.active {
+                right: 0;
+            }
+            
+            .mobile-nav-links {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .mobile-nav-link {
+                color: rgba(255, 255, 255, 0.9);
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 500;
+                padding: 16px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                transition: var(--transition);
+                display: block;
+                text-align: left;
+            }
+            
+            .mobile-nav-link:hover {
+                color: white;
+                padding-left: 10px;
+            }
+            
+            .mobile-nav-link.active {
+                color: var(--primary-blue);
+                font-weight: 600;
+            }
+            
+            .mobile-menu .cta-nav {
+                margin-top: 20px;
+                display: block;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-cta, .hero-cta-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .section-main-title {
+                font-size: 1.8rem;
+            }
+            
+            .contact-container {
+                padding: 30px 20px;
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-badge {
+                width: 70px;
+                height: 70px;
+                bottom: 15px;
+                right: -10px;
+            }
+            
+            .experience-years {
+                font-size: 1.5rem;
+            }
+            
+            .experience-text {
+                font-size: 0.7rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-main-title {
+                font-size: 1.6rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                padding: 20px 16px;
+            }
+            
+            .hero-cta, .hero-cta-secondary {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .mobile-menu {
+                max-width: 280px;
+                padding: 90px 20px 30px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 12px;
+            }
+            
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            
+            .section-main-title {
+                font-size: 1.4rem;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+            
+            .contact-container {
+                padding: 16px 12px;
+            }
+            
+            .mobile-menu {
+                max-width: 260px;
+                padding: 80px 16px 25px;
+            }
+            
+            .mobile-nav-link {
+                font-size: 16px;
+                padding: 14px 0;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-dark);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s, visibility 0.4s;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="#" class="logo-container">
+               <!-- <div class="logo-icon">
+                    <i class="fas fa-sparkles"></i>
+                </div> -->
+                <div class="logo-text">
+                    <div class="logo-main">JK MOBILE AUTO DETAILING SERVICE</div>
+                    <div class="logo-sub">CAR DETAILING</div>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation - Visible on desktop -->
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <a href="#contact" class="cta-nav">BOOK NOW</a>
+            </nav>
+
+            <!-- Mobile Menu Button - Hidden on desktop, shown on mobile -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu - Hidden on desktop -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link active">Home</a></li>
+            <li><a href="#services" class="mobile-nav-link">Services</a></li>
+            <li><a href="#portfolio" class="mobile-nav-link">Portfolio</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            <li><a href="#contact" class="cta-nav">BOOK NOW</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i> MOBILE DETAILING
+                </div>
+                <h1 class="hero-title">Car Detailing in Virginia</h1>
+                <p class="hero-subtitle">Quality mobile detailing service. I come to your location with high-quality products to make your car look its best.</p>
+                <div class="hero-cta-container">
+                    <a href="#contact" class="hero-cta">BOOK APPOINTMENT</a>
+                    <a href="#portfolio" class="hero-cta-secondary">VIEW MY WORK</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-spacing" id="services">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-subtitle">SERVICES</div>
+                <h2 class="section-main-title">Detailing Packages</h2>
+                <p class="section-description">Choose from my detailing packages. Each is designed to clean and protect your vehicle at reasonable prices.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="card">
+                    <div class="card-header">
+                        <img src="images/exterior.png" alt="Exterior Detailing">
+                        <!--<div class="card-icon">
+                           <i class="fas fa-spray-can"></i>
+                        </div> -->
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Exterior Detail</h3>
+                        <p class="card-description">Complete exterior wash, clay bar treatment, hand wax, wheel cleaning, tire dressing, and window cleaning.</p>
+                        <div class="card-price">$120<span>/starting from</span></div>
+                        <a href="#contact" class="card-button">Book This Service</a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card">
+                    <div class="card-header">
+                        <img src="images/interior.png" alt="Interior Detailing">
+                      <!--  <div class="card-icon">
+                            <i class="fas fa-vacuum"></i>
+                        </div> -->
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Interior Detail</h3>
+                        <p class="card-description">Deep cleaning of all interior surfaces, leather conditioning, fabric protection, odor elimination, and trim restoration.</p>
+                        <div class="card-price">$180<span>/starting from</span></div>
+                        <a href="#contact" class="card-button">Book This Service</a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="card">
+                    <div class="card-header">
+                        <img src="images/full-detailing.png" alt="Full Detailing">
+                        <!-- <div class="card-icon">
+                         <!--   <i class="fas fa-gem"></i>
+                        </div> -->
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Complete Detail</h3>
+                        <p class="card-description">Full interior and exterior detailing including paint correction, ceramic coating, engine bay cleaning, and fabric protection.</p>
+                        <div class="card-price">$350<span>/starting from</span></div>
+                        <a href="#contact" class="card-button">Book This Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section-spacing portfolio-section" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-subtitle">MY WORK</div>
+                <h2 class="section-main-title">Before & After</h2>
+                <p class="section-description">See examples of my work. Each picture shows the transformation I can achieve with attention to detail.</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Portfolio Items -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Car Detailing" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Exterior Makeover</h3>
+                        <div class="portfolio-category">Paint Correction</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1020&q=80" alt="Interior Detailing" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Interior Restoration</h3>
+                        <div class="portfolio-category">Leather Conditioning</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Car Polish" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Luxury Polish</h3>
+                        <div class="portfolio-category">Ceramic Coating</div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Engine Detailing" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Engine Bay Detail</h3>
+                        <div class="portfolio-category">Engine Cleaning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-spacing" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image-container">
+                    <img src="images/about.png" alt="Car Detailer" class="about-image">
+                    <div class="experience-badge">
+                        <div class="experience-years">3+</div>
+                        <div class="experience-text">Years Experience</div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <div class="section-subtitle">ABOUT ME</div>
+                    <h2 class="section-main-title" style="text-align: left;">Mobile Detailing in Virginia</h2>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">Hi, I'm Jhun. I've been detailing cars for over 3 years. What started as a hobby helping friends has become a service I offer throughout Virginia.</p>
+                    <p style="margin-bottom: 30px; color: var(--text-light);">I focus on doing quality work with good products. I come to your home or office, which saves you time and lets me do my best work in a convenient setting.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div>
+                                <h4>Mobile Service</h4>
+                                <p style="color: var(--text-light); font-size: 0.9rem;">I come to you in Virginia</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4>Good Products</h4>
+                                <p style="color: var(--text-light); font-size: 0.9rem;">Using quality supplies</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Flexible Times</h4>
+                                <p style="color: var(--text-light); font-size: 0.9rem;">Weekends & evenings available</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4>You're Happy</h4>
+                                <p style="color: var(--text-light); font-size: 0.9rem;">I make sure you're satisfied</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-spacing" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-subtitle">CONTACT</div>
+                <h2 class="section-main-title">Book Your Appointment</h2>
+                <p class="section-description">Get in touch to schedule detailing. I'll come to your location in Virginia at a time that works for you.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 style="text-align: left; margin-bottom: 24px;">Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Service Area</h3>
+                            <p>Virginia, USA - Mobile Service</p>
+                            <p style="color: var(--text-light); font-size: 0.9rem;">I travel to your location</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Call or Text</h3>
+                            <p>(703) 981-9813<br>(240) 756-3026</p>
+                            <p style="color: var(--text-light); font-size: 0.9rem;">Available 7am-9pm, 7 days</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>jhun.cardetailing@gmail.com</p>
+                            <p style="color: var(--text-light); font-size: 0.9rem;">Response within 2 hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-options">
+                    <h3 style="text-align: left; margin-bottom: 24px;">Direct Booking</h3>
+                    <p style="color: var(--text-light); margin-bottom: 24px; font-size: 0.95rem;">Contact me directly to discuss your needs and schedule.</p>
+                    
+                    <a href="tel:7035557890" class="contact-item" style="text-decoration: none;">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Call Now</h3>
+                            <p style="color: var(--text-light); font-size: 0.9rem;">Direct call for booking</p>
+                        </div>
+                    </a>
+                    
+                    <a href="sms:7035557890" class="contact-item" style="text-decoration: none;">
+                        <div class="contact-icon">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Send a Text</h3>
+                            <p style="color: var(--text-light); font-size: 0.9rem;">Quick text for scheduling</p>
+                        </div>
+                    </a>
+                    
+                    <a href="mailto:michael@eliteshine.com" class="contact-item" style="text-decoration: none;">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Send an Email</h3>
+                            <p style="color: var(--text-light); font-size: 0.9rem;">Questions and appointment requests</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>JK MOBILE AUTO DETAILING SERVICE</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px; font-size: 0.95rem;">Mobile car detailing in Virginia. I come to your home or office to detail your car.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="#home" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#services" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem;">Services</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#portfolio" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem;">Portfolio</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#about" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem;">About</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#contact" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.95rem;">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Service Areas</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Arlington</li>
+                        <li style="margin-bottom: 10px; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Alexandria</li>
+                        <li style="margin-bottom: 10px; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Fairfax</li>
+                        <li style="margin-bottom: 10px; color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">Richmond</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 JK MOBILE AUTO DETAILING SERVICE. Part-time mobile detailing service in Virginia, USA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 600);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-link, .mobile-menu .cta-nav').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling with offset for header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Active nav link based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                
+                if (window.scrollY >= (sectionTop - headerHeight - 80)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const isMobileMenuOpen = mobileMenu.classList.contains('active');
+            const isClickInsideMenu = mobileMenu.contains(e.target);
+            const isClickOnMenuBtn = mobileMenuBtn.contains(e.target);
+            
+            if (isMobileMenuOpen && !isClickInsideMenu && !isClickOnMenuBtn) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Close mobile menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
